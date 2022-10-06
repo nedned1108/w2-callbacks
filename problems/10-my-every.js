@@ -20,10 +20,28 @@ console.log(myEvery([4, 7, 6, 10], isEven));            // false
 console.log(myEvery(['book', 'door'], hasO));           // true
 console.log(myEvery(['book', 'door', 'pen'], hasO));    // false
 *******************************************************************************/
-
+// 1. accept an array an a cb
+// 2. return a boolean indicating whether or not
+// all el of the array return true when passed into the cb
 function myEvery(array, cb) {
-    // Your code here
+    let newArr = array.map((el) => {
+        return cb(el);
+    })
+    return !newArr.includes(false);
 }
+
+let isEven = function (num) {
+    return num % 2 === 0;
+};
+
+let hasO = function(string) {
+    return string.includes('o');
+};
+
+console.log(myEvery([4, 8, 6, 10], isEven));            // true
+console.log(myEvery([4, 7, 6, 10], isEven));            // false
+console.log(myEvery(['book', 'door'], hasO));           // true
+console.log(myEvery(['book', 'door', 'pen'], hasO));    // false
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 try {

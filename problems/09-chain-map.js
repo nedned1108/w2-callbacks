@@ -28,11 +28,34 @@ console.log(chainMap(25, add5, half, square));  // 225
 console.log(chainMap(4, square, half));         // 8
 console.log(chainMap(4, half, square));         // 4
 *******************************************************************************/
+// 1. accepts a value and any number
+// 2. return the final result of passing the value through all the cb
 
 function chainMap(val, ...callbacks) {
-  // Your code here
+  let final = callbacks.forEach((cb) => {
+    
+    val = cb(val)
+  })
+  return val;
 }
 
+let add5 = function(n) {
+  return n + 5;
+};
+
+let half = function(n) {
+  return n / 2;
+};
+
+let square = function(n) {
+  return n * n;
+};
+
+console.log(chainMap(25, add5));                // 30
+console.log(chainMap(25, add5, half));          // 15
+console.log(chainMap(25, add5, half, square));  // 225
+console.log(chainMap(4, square, half));         // 8
+console.log(chainMap(4, half, square));         // 4
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 try {
   module.exports = chainMap;
