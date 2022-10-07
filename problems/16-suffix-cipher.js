@@ -41,6 +41,7 @@ function suffixCipher(sentence, cipher) {
   let callbacks = Object.values(cipher);
   let suffixes = Object.keys(cipher);
   let words = sentence.split(" ");
+  
   let newSentence = words.map((el) => {
     if (el.endsWith(suffixes[0])) {
       return callbacks[0](el);
