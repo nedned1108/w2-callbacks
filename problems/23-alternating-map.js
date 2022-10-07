@@ -34,10 +34,42 @@ console.log(alternatingMap(['hEy', 'EVERYone', 'whats', 'uP??'], yell, whisper))
 // [ 'HEY!', '..everyone..', 'WHATS!', '..up??..' ]
 
 *******************************************************************************/
+// 1. accepts an array and two callbacks
+// 2. return a new array containing the results of passing
+// the original elements into the callbacks in an alternating fashion.
 
 function alternatingMap(array, cb1, cb2) {
-  // Your code here
+  let newArr = [];
+  array.forEach((el) => {
+    if (newArr.length === 0 || newArr.length % 2 === 0) {
+      newArr.push(cb1(el))
+    } else if (newArr.length % 2 !== 0) {
+      newArr.push(cb2(el))
+    }
+  })
+  return newArr;
 }
+
+let triple = function (n) {
+  return 3 * n;
+};
+
+let half = function (n) {
+  return n / 2;
+};
+console.log(alternatingMap([7, 3, 2, 9, 8], triple, half));
+// [ 21, 1.5, 6, 4.5, 24 ]
+
+
+let yell = function (s) {
+  return s.toUpperCase() + '!';
+};
+
+let whisper = function (s) {
+  return '..' + s.toLowerCase() + '..';
+};
+console.log(alternatingMap(['hEy', 'EVERYone', 'whats', 'uP??'], yell, whisper));
+// [ 'HEY!', '..everyone..', 'WHATS!', '..up??..' ]
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 try {
